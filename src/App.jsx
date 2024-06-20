@@ -14,12 +14,11 @@ function App() {
   }
 
   function onSubmit(data) {
-    const fullName = data.name + " " + data.lastName + " -  " + data.email
-    setNames([...names, fullName]);
+    setNames([...names, { name : data.name, lastName: data.lastName, email: data.email}]);
     reset();
   }
 
-  
+
 
   return (
     <main className="w-full min-h-screen flex flex-col bg-black">
@@ -82,16 +81,27 @@ function App() {
         {names.length === 0 && <p className="text-white/50"> No hay koders🙅‍♂️</p>}
         {names.map((names, i) => {
           return (
+          <div className='flex flex-row gap-2
+          ' key={`data-${i}`}>
+            <div className="bg-white/10 rounded p-4 flex flex-row justify-between select-none">
+              <span className="select-none">{ names.name + " " + names.lastName} </span>
+              
+            </div>
 
-            <div key={`todo-${i}`} className="bg-white/10 rounded p-4 flex flex-row justify-between select-none">
-              <span className="select-none">{names}</span>
-              <span
+            <div className="bg-white/10 rounded p-4 flex flex-row justify-between select-none">
+              <span className="select-none">{ names.email} </span>
+            </div>
+
+            <div className="bg-white/10 rounded p-4 flex flex-row justify-between select-none">
+            <span
                 className="text-red-500 cursor-pointer hover:bg-red-500 hover:text-white rounded-full p-1 size-5 text-center items-center flex"
                 onClick={() => removeFromList(i)}
               >
                 x
               </span>
             </div>
+            
+          </div> 
           );
         })}
       </div>
